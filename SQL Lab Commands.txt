@@ -1,0 +1,59 @@
+select * from customers;
+
+select distinct country from customers;
+
+select * from customers
+where customer_id = 'BL%';
+
+select * from orders limit 100;
+
+select * from customers
+where postal_code IN ('1010','3012','12209','05023');
+
+select * from orders
+where ship_region is not null;
+
+select * from customers order by country,city;
+
+insert into customers (customer_id,company_name, contact_name, contact_title, address, city,region, postal_code,country, phone, fax )
+values('TOMMY', 'TommyBoy LLC', 'Tom Seeber', 'Professor Extraordinare', '123 Toronto Dr.', 'Toronto', 'CA', 'ADR 678', 'Canada', '5555555555', '5555555555');
+
+update orders
+set ship_region = 'EuroZone'
+where ship_country = 'France';
+
+delete from order_details where quantity=1;
+
+select avg(quantity), max(quantity), min(quantity) from order_details;
+
+select order_id, avg(quantity), max(quantity), min(quantity) from order_details
+group by order_id;
+
+select customer_id from orders
+where order_id=10290;
+
+select * from orders join customers on orders.customer_id = customers.customer_id;
+
+select * from orders left join customers on orders.customer_id = customers.customer_id;
+
+select * from orders right join customers on orders.customer_id = customers.customer_id;
+
+select order_id, ship_city, ship_country from orders join customers on orders.customer_id = customers.customer_id
+where city = 'London';
+
+select ship_name
+from orders
+join order_details on orders.order_id = order_details.order_id
+join products on order_details.product_id = products.product_id
+where products.discontinued = 1;
+
+select first_name from employees
+where reports_to is null;
+
+select * from employees;
+
+select first_name from employees
+where reports_to = 2;
+
+create index customer_id_index
+on customers(customer_id);
