@@ -3,7 +3,7 @@ select * from customers;
 select distinct country from customers;
 
 select * from customers
-where customer_id = 'BL%';
+where customer_id LIKE 'BL%';
 
 select * from orders limit 100;
 
@@ -38,7 +38,7 @@ select * from orders left join customers on orders.customer_id = customers.custo
 
 select * from orders right join customers on orders.customer_id = customers.customer_id;
 
-select order_id, ship_city, ship_country from orders join customers on orders.customer_id = customers.customer_id
+select order_id, ship_city, ship_country from orders join employees on orders.employee_id = employees.employee_id
 where city = 'London';
 
 select ship_name
